@@ -5,6 +5,7 @@
   --title-color: #212121;
   --link-white-color: #ffffff;
   --link-grey-color: #757575;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .list {
@@ -119,7 +120,29 @@ body {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+  padding-bottom: 32px;
+
+  position: relative;
+
   color: var(--title-color);
+  transition-property: var(--accent-color);
+  transition-duration: 250ms;
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.active::after {
+  content: '';
+
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  background-color: var(--accent-color);
 }
 
 .navigation-list-item:not(:last-child) {
@@ -150,6 +173,10 @@ body {
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: var(--link-grey-color);
+
+  transition-property: var(--accent-color);
+  transition-duration: 250ms;
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .envelope-icon {
@@ -191,6 +218,10 @@ body {
   letter-spacing: 0.02em;
   color: var(--link-grey-color);
   justify-content: center;
+
+  transition-property: var(--accent-color);
+  transition-duration: 250ms;
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .tel-link:hover,
@@ -243,6 +274,10 @@ body {
 
   background-color: var(--accent-color);
   color: var(--link-white-color);
+
+  transition-property: var(--accent-color);
+  transition-duration: 250ms;
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .hero-section-btn:hover,
@@ -334,6 +369,28 @@ body {
 .work-img {
   margin-left: 30px;
   margin-top: 10px;
+
+  position: relative;
+}
+
+.work-image-color {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(47, 48, 58, 0.8);
+}
+
+.work-img-description {
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 27px 82px;
+  margin-bottom: 10px;
+  color: var(--link-white-color);
 }
 
 /*=============== Team ==============*/
@@ -409,6 +466,7 @@ body {
   height: 44px;
   background-color: var(--link-white-color);
   border-radius: 50%;
+  transition: background-color 250ms var(--transition-timing-function);
 }
 
 .social-list-link:hover,
@@ -450,6 +508,7 @@ body {
   height: 100%;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: border-color 250ms var(--transition-timing-function);
 }
 
 .clients-list-icon {
@@ -457,6 +516,8 @@ body {
   height: 60px;
 
   fill: #afb1b8;
+
+  transition: fill 250ms var(--transition-timing-function);
 }
 
 .clients-list-link:hover,
@@ -508,6 +569,8 @@ body {
 
   color: var(--link-white-color);
   font-style: normal;
+
+  transition: color 250ms var(--transition-timing-function);
 }
 
 .link-footer {
@@ -519,6 +582,8 @@ body {
 
   color: rgba(255, 255, 255, 0.6);
   font-style: normal;
+
+  transition: color 250ms var(--transition-timing-function);
 }
 
 .mail {
@@ -563,6 +628,8 @@ body {
   height: 44px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+
+  transition: background-color 200ms var(--transition-timing-function);
 }
 
 .footer-list-icon {
@@ -593,6 +660,8 @@ body {
   cursor: pointer;
 
   color: var(--title-color);
+
+  transition: background-color 250ms var(--transition-timing-function);
 }
 
 .btn-list {
@@ -605,6 +674,10 @@ body {
 
 .filter-item:not(:last-child) {
   margin-right: 8px;
+}
+
+.filter-item {
+  transition: box-shadow 250ms var(--transition-timing-function);
 }
 
 .filter-item:hover,
@@ -655,6 +728,39 @@ body {
   margin-top: 30px;
   margin-left: 30px;
   cursor: pointer;
+
+  transition: box-shadow 250ms var(--transition-timing-function);
+}
+
+.project-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 294px;
+  padding: 63px 24px;
+  overflow: auto;
+  transform: translateY(100%);
+
+  font-family: var(--main-font);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  color: var(--link-white-color);
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transition: transform 250ms var(--transition-timing-function);
+}
+
+.project-link-img:hover .overlay,
+.project-link-img:focus .overlay {
+  transform: translateY(0%);
 }
 
 .project-section-parts {
@@ -671,4 +777,61 @@ body {
 .project-item:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+/*=============== Modal wimdow ==================*/
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+
+  transition: opacity 250ms var(--transition-timing-function),
+    visibility 250ms var(--transition-timing-function);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 528px;
+  height: 581px;
+  background-color: var(--link-white-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-btn {
+  width: 18px;
+  height: 18px;
+
+  fill: #000000;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  padding: 6px 0 0 0;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
